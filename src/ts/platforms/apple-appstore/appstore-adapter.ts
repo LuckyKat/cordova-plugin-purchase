@@ -211,15 +211,7 @@ namespace CdvPurchase {
 
                         error: (code: ErrorCode, message: string, options?: { productId: string, quantity?: number }) => {
                             this.log.error('ERROR: ' + code + ' - ' + message);
-                            if (code === ErrorCode.PAYMENT_CANCELLED) {
-                                // When the user closes the payment sheet, this generates a
-                                // PAYMENT_CANCELLED error that isn't an error anymore since version 13
-                                // of the plugin.
-                                return;
-                            }
-                            else {
-                                this.context.error(storeError(code, message));
-                            }
+                            this.context.error(storeError(code, message));
                         },
 
                         ready: () => {
